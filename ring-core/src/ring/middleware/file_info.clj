@@ -84,7 +84,7 @@
   "Has the file been modified since the last request from the client?"
   [{headers :headers :as req} last-modified]
   (if-let [modified-since (headers "if-modified-since")]
-    (= last-modified (.parse (make-http-format) modified-since))))
+    (<= last-modified (.parse (make-http-format) modified-since))))
 
 (defn wrap-file-info
   "Wrap an app such that responses with a file a body will have corresponding
